@@ -11,6 +11,9 @@ import UIKit
 class CurrencyConverterVC: UIViewController {
     var selectedCurrency: String?
     
+        
+        
+    
     
     @IBOutlet var titleLabel: UILabel!
     
@@ -26,13 +29,15 @@ class CurrencyConverterVC: UIViewController {
     let currencyPicker = UIPickerView()
     
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCurrencyTextFields()
         configureAmountTextFields()
         configureConvertButton()
         createDismissTapGesture ()
-        
+        networkCall()
     }
     
     
@@ -90,19 +95,23 @@ class CurrencyConverterVC: UIViewController {
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
     }
-    let url = URL(string: "http://apilayer.net/api/live?access_key=155810ee37654a467647828de84a5eed&currencies=RUB&source=USD&format=1")
     
-    
+    func networkCall () {
+        let baseCurrency = self.firstCurrencyTextField.text!
+        let secondCurrency = self.secondCurrencyTextField.text!
+        let apiUrl = "https://api.ratesapi.io/api/latest?base=\(baseCurrency)&symbols=\(secondCurrency)"
+        let url = URL(string: apiUrl)
+        guard url != nil else { return }
+        let session = URLSession.shared
+        let task = session.dataTask(with: url!) { (data, response, error) in
+            
+            if error != nil || data == nil { return }
+            
+            return
+        }
+        task.resume()
     }
 
+    
 
-extension CurrencyConverterVC: NetworkManagerDelegate {
-    func getCurrency(from firstCurrencyTextField: String, from secondCurrencyTextField: String, from firstAmountTextField: String){
-        self.firstCurrencyTextField.text! = firstCurrencyTextField
-        self.secondCurrencyTextField.text! = secondCurrencyTextField
-        self.firstAmountTextField.text! = firstAmountTextField
-        
-    }
 }
-
-
