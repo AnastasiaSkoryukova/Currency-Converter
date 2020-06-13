@@ -10,10 +10,7 @@ import UIKit
 
 class CurrencyConverterVC: UIViewController {
     var selectedCurrency: String?
-    
-        
-        
-    
+
     
     @IBOutlet var titleLabel: UILabel!
     
@@ -85,6 +82,7 @@ class CurrencyConverterVC: UIViewController {
         convertButton.layer.cornerRadius = 12
         convertButton.layer.borderColor = UIColor.systemGray2.cgColor
         convertButton.layer.borderWidth = 2
+        convertButton.addTarget(self, action: #selector(convertButtonAction), for: .touchUpInside)
     }
     
     
@@ -107,11 +105,21 @@ class CurrencyConverterVC: UIViewController {
             
             if error != nil || data == nil { return }
             
-            return
+            do {
+                let decoder = JSONDecoder()
+                let response = try decoder.decode(Response.self, from: data!)
+            }
+            
+            catch {
+                
+            }
         }
+        
         task.resume()
     }
-
-    
+    @objc func convertButtonAction() {
+        print("Convert button was tapped")
+        networkCall()
+    }
 
 }

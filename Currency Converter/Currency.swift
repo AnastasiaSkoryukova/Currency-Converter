@@ -8,6 +8,14 @@
 
 import Foundation
 
-struct Currency {
+struct Currency: Decodable {
     var rates: [String: Double]
+    
+    enum CodingKeys: String, CodingKey {
+        case rates
+    }
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.rates = try container.decode([String:Double].self, forKey: .rates)
+}
 }
