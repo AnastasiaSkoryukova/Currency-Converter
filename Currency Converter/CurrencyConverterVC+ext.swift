@@ -63,4 +63,8 @@ extension CurrencyConverterVC: UIPickerViewDelegate, UIPickerViewDataSource, UIT
         }
         return true
     }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        return string == string.filter("0123456789.".contains)
+    }
 }

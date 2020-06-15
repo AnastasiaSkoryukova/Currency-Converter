@@ -9,7 +9,9 @@
 import Foundation
 
 struct Currency: Decodable {
-    var rates: [String: Double]
+    var rates: [String: Double] = [ : ]
+    
+    
     
     enum CodingKeys: String, CodingKey {
         case rates

@@ -8,6 +8,10 @@
 
 import UIKit
 
+public protocol Numeric : Equatable, ExpressibleByIntegerLiteral{
+    init?<T : BinaryInteger>(exactly source: T)
+}
+
 class CurrencyConverterVC: UIViewController {
     var selectedCurrency: String?
 
@@ -28,13 +32,13 @@ class CurrencyConverterVC: UIViewController {
     
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCurrencyTextFields()
         configureAmountTextFields()
         configureConvertButton()
         createDismissTapGesture ()
-        networkCall()
     }
     
     
@@ -76,6 +80,7 @@ class CurrencyConverterVC: UIViewController {
         for amountTextField in amountTextFieldsArray {
             amountTextField.delegate = self
         }
+        
     }
     
     func configureConvertButton() {
@@ -94,7 +99,7 @@ class CurrencyConverterVC: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    func networkCall () {
+    func getCurrencyRates () {
         let baseCurrency = self.firstCurrencyTextField.text!
         let secondCurrency = self.secondCurrencyTextField.text!
         let apiUrl = "https://api.ratesapi.io/api/latest?base=\(baseCurrency)&symbols=\(secondCurrency)"
@@ -108,6 +113,12 @@ class CurrencyConverterVC: UIViewController {
             do {
                 let decoder = JSONDecoder()
                 let response = try decoder.decode(Response.self, from: data!)
+                let rate = response.rates?.rates.map { $0.value }
+                guard self.firstAmountTextField.text != nil else { return }
+                let firstAmount = self.firstAmountTextField.text
+                let total = (rate?.first!)! * firstAmount!.toDouble()!
+                self.secondAmountTextField.text = String(total)
+                
             }
             
             catch {
@@ -118,8 +129,8 @@ class CurrencyConverterVC: UIViewController {
         task.resume()
     }
     @objc func convertButtonAction() {
-        print("Convert button was tapped")
-        networkCall()
+        getCurrencyRates()
+        
+        
     }
-
 }
