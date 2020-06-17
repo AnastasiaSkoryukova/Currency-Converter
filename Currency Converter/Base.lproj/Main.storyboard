@@ -34,12 +34,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="0" textAlignment="center" minimumFontSize="15" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="XzN-h3-LyR" userLabel="secondAmountTextField" customClass="CurrencyConverterTextField" customModule="Currency_Converter" customModuleProvider="target">
-                                <rect key="frame" x="120" y="378" width="264" height="34"/>
-                                <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numbersAndPunctuation" returnKeyType="done"/>
-                            </textField>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="USD" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="5xN-7z-mSi" userLabel="firstCurrencyTextField" customClass="CurrencyConverterTextField" customModule="Currency_Converter" customModuleProvider="target">
                                 <rect key="frame" x="30" y="304" width="60" height="34"/>
                                 <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -55,7 +49,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eSG-hM-kdz">
-                                <rect key="frame" x="92" y="512" width="230" height="50"/>
+                                <rect key="frame" x="92" y="505" width="230" height="50"/>
                                 <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Cm4-Od-h8h"/>
@@ -66,25 +60,35 @@
                                     <color key="titleColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                 </state>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ke5-e8-4pw">
+                                <rect key="frame" x="120" y="378" width="264" height="34"/>
+                                <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="73s-AH-VHh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="pw6-H2-cb1" firstAttribute="leading" secondItem="5xN-7z-mSi" secondAttribute="trailing" constant="30" id="1bF-aC-1af"/>
                             <constraint firstItem="5xN-7z-mSi" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="260" id="1sl-CL-JKD"/>
                             <constraint firstItem="ZYU-2I-nrW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="70" id="D72-S0-lBe"/>
+                            <constraint firstItem="eSG-hM-kdz" firstAttribute="top" secondItem="ke5-e8-4pw" secondAttribute="bottom" constant="93" id="OfS-i1-Rqt"/>
+                            <constraint firstItem="ke5-e8-4pw" firstAttribute="top" secondItem="pw6-H2-cb1" secondAttribute="bottom" constant="40" id="Rq8-lo-ZvA"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pw6-H2-cb1" secondAttribute="trailing" constant="30" id="SyW-Pi-gbe"/>
                             <constraint firstItem="pw6-H2-cb1" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="260" id="TE5-Wo-Piu"/>
                             <constraint firstItem="YHY-yk-CoY" firstAttribute="top" secondItem="5xN-7z-mSi" secondAttribute="bottom" constant="40" id="Tkk-8x-5oG"/>
-                            <constraint firstItem="XzN-h3-LyR" firstAttribute="leading" secondItem="YHY-yk-CoY" secondAttribute="trailing" constant="30" id="V9x-rk-ULB"/>
-                            <constraint firstItem="eSG-hM-kdz" firstAttribute="top" secondItem="XzN-h3-LyR" secondAttribute="bottom" constant="100" id="VGh-4M-MH6"/>
-                            <constraint firstItem="XzN-h3-LyR" firstAttribute="top" secondItem="pw6-H2-cb1" secondAttribute="bottom" constant="40" id="ZJt-k0-NJ3"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ke5-e8-4pw" secondAttribute="trailing" constant="30" id="UjV-R1-X0i"/>
                             <constraint firstItem="YHY-yk-CoY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="dOq-yt-spM"/>
                             <constraint firstItem="ZYU-2I-nrW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="gFd-gR-HHw"/>
                             <constraint firstItem="eSG-hM-kdz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gZO-1S-n7x"/>
                             <constraint firstItem="5aH-vG-bTy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="kNc-YB-tqB"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="XzN-h3-LyR" secondAttribute="trailing" constant="30" id="n8i-XO-VNU"/>
                             <constraint firstItem="5aH-vG-bTy" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="tLX-zd-TXM"/>
                             <constraint firstItem="5xN-7z-mSi" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="tmI-Mz-PyE"/>
+                            <constraint firstItem="ke5-e8-4pw" firstAttribute="leading" secondItem="YHY-yk-CoY" secondAttribute="trailing" constant="30" id="uUY-ee-Au4"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ZYU-2I-nrW" secondAttribute="trailing" constant="97" id="vxI-Jp-9iG"/>
                             <constraint firstItem="5aH-vG-bTy" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottom" id="xsT-VN-u57"/>
                             <constraint firstItem="5aH-vG-bTy" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="yKI-td-PF3"/>
@@ -92,10 +96,10 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="amountLabel" destination="ke5-e8-4pw" id="5RF-qN-cjs"/>
                         <outlet property="convertButton" destination="eSG-hM-kdz" id="Iri-3J-UFe"/>
                         <outlet property="firstAmountTextField" destination="pw6-H2-cb1" id="77J-gK-AwF"/>
                         <outlet property="firstCurrencyTextField" destination="5xN-7z-mSi" id="vcT-Hy-Rrx"/>
-                        <outlet property="secondAmountTextField" destination="XzN-h3-LyR" id="Aev-VQ-7e8"/>
                         <outlet property="secondCurrencyTextField" destination="YHY-yk-CoY" id="dkO-F2-lPK"/>
                         <outlet property="titleLabel" destination="ZYU-2I-nrW" id="3v2-6E-hif"/>
                     </connections>

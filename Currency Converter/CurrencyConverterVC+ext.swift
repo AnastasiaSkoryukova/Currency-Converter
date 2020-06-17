@@ -58,8 +58,6 @@ extension CurrencyConverterVC: UIPickerViewDelegate, UIPickerViewDataSource, UIT
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == firstAmountTextField {
             firstAmountTextField.resignFirstResponder()
-        } else if textField == secondAmountTextField {
-            secondAmountTextField.resignFirstResponder()
         }
         return true
     }
@@ -68,3 +66,4 @@ extension CurrencyConverterVC: UIPickerViewDelegate, UIPickerViewDataSource, UIT
         return string == string.filter("0123456789.".contains)
     }
 }
+

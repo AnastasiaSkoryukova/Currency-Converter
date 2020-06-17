@@ -1,5 +1,5 @@
 //
-//  Alert.swift
+//  Double+ext.swift
 //  Currency Converter
 //
 //  Created by Анастасия on 16.06.2020.
@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+    extension LosslessStringConvertible {
+        var string: String { .init(self) }
+    }
+
