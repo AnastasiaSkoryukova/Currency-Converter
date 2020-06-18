@@ -91,11 +91,11 @@
 				5D8E14A82499567D0006F902 /* Dictionary+ext.swift */,
 				5D8E14A6249918480006F902 /* Response.swift */,
 				5D8E14AC249962ED0006F902 /* Alert.swift */,
+				5D8E14AA249959E30006F902 /* Double+ext.swift */,
 				5D68AC6924868BF10096D3A3 /* Main.storyboard */,
 				5D68AC6C24868BF40096D3A3 /* Assets.xcassets */,
 				5D68AC6E24868BF40096D3A3 /* LaunchScreen.storyboard */,
 				5D68AC7124868BF40096D3A3 /* Info.plist */,
-				5D8E14AA249959E30006F902 /* Double+ext.swift */,
 			);
 			path = "Currency Converter";
 			sourceTree = "<group>";

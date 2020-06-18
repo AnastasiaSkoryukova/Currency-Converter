@@ -33,7 +33,8 @@ class CurrencyConverterVC: UIViewController {
     var amountInDouble: Double?
     var baseCurrency = ""
     var secondCurrency = ""
-    
+    var currencyResult: Double?
+    let serialQueue = DispatchQueue(label: "serial queue")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +46,7 @@ class CurrencyConverterVC: UIViewController {
     
     
     func createDismissTapGesture () {
-        
+
         let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
         tap.delegate = self
         view.addGestureRecognizer(tap)
@@ -145,22 +146,30 @@ class CurrencyConverterVC: UIViewController {
                 DispatchQueue.main.async {
                     guard self.firstAmountTextField.text != nil  else {return}
                     let amountInDouble = Double(self.firstAmountTextField.text!)
-                    self.amountInDouble = amountInDouble!
+                    let roundedAmountInDouble = amountInDouble?.round(to: 0)
+                    guard roundedAmountInDouble != nil else { return }
+                    self.amountInDouble = roundedAmountInDouble!
                     let currencyRate = currencyRateArray.first!
                     self.currencyRate = currencyRate
-                }
-                
-                
-                
-                
-            } catch {
-                completed(.failure(CurrencyError.invalidData))
+                    
             }
+                
+            }
+                
+                
+            catch {
+                
+                    completed(.failure(CurrencyError.invalidData))
+                
+            }
+            
+            
         }
         task.resume()
     }
     
     func getResult() {
+        
         guard self.amountInDouble != nil else {print("have no amount to count")
             return
         }
@@ -168,21 +177,31 @@ class CurrencyConverterVC: UIViewController {
             return
         }
         let result = self.amountInDouble! * self.currencyRate!
-        DispatchQueue.main.async {
-            self.amountLabel.text = String(result)
-        }
+        let roundedResult = result.round(to: 2)
+        self.currencyResult = roundedResult
+            
+            
+        
+        
         
     }
     
     @objc func convertButtonAction () {
-        getCurrencyRates(from: baseCurrency, to: secondCurrency) { [weak self] result in
+        print("The button was tapped")
+        serialQueue.async{
+            self.getCurrencyRates(from: self.baseCurrency, to: self.secondCurrency) { [weak self] result in
             guard let self = self else {return}
             switch result {
-            case .success(let _):
-                self.getResult()
+            case .success( _):
+            self.getResult()
             case .failure(_):
                 return
             }
         }
+        }
+        serialQueue.async {
+        self.amountLabel.text = String(self.currencyResult!)
+        }
+        
     }
 }
