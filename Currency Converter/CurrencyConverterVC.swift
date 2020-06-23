@@ -36,6 +36,7 @@ class CurrencyConverterVC: UIViewController {
     var secondCurrency = ""
     var currencyResult: Double?
     var currencyAmount = ""
+    var result: Double?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -131,16 +132,22 @@ class CurrencyConverterVC: UIViewController {
             guard let self = self else { return }
             switch result {
             case .success(let rate):
-                self.makeConversion(with: rate)
+                self.makeCalculation(with: rate)
             case .failure( _):
                print(CurrencyError.invalidData)
             }
-        
+            self.updateUI()
     }
     }
-    func makeConversion (with rate: Currency) {
+    
+    func makeCalculation(with rate: Currency) {
+        guard let amountInDouble = self.amountInDouble else { return }
+        let result = amountInDouble * rate.result
+        self.result = result
+        }
+    func updateUI () {
         DispatchQueue.main.async {
-            self.amountLabel.text = String(rate.result)
+            self.amountLabel.text = self.result?.string
         }
         
         
