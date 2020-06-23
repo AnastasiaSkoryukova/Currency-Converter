@@ -19,6 +19,7 @@ class CurrencyConverterVC: UIViewController {
     @IBOutlet var firstCurrencyTextField: CurrencyConverterTextField!
     @IBOutlet var secondCurrencyTextField: CurrencyConverterTextField!
     @IBOutlet var firstAmountTextField: CurrencyConverterTextField!
+    @IBOutlet var resultTextField: CurrencyConverterTextField!
     
     @IBOutlet var amountLabel: UILabel!
     @IBOutlet var convertButton: UIButton!
@@ -41,7 +42,7 @@ class CurrencyConverterVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCurrencyTextFields()
-        configureAmountTextFieldAndLabel()
+        configureAmountTextFieldAndResultTextField()
         configureConvertButton()
         createDismissTapGesture ()
         
@@ -97,14 +98,8 @@ class CurrencyConverterVC: UIViewController {
     }
     
     
-    func configureAmountTextFieldAndLabel() {
+    func configureAmountTextFieldAndResultTextField() {
         firstAmountTextField.delegate = self
-        amountLabel.layer.borderColor = UIColor.systemGray3.cgColor
-        amountLabel.layer.borderWidth = 2
-        amountLabel.layer.cornerRadius = 6
-        amountLabel.textColor = .label
-        amountLabel.tintColor = .label
-        amountLabel.textAlignment = .center
         
     }
     
@@ -143,11 +138,12 @@ class CurrencyConverterVC: UIViewController {
     func makeCalculation(with rate: Currency) {
         guard let amountInDouble = self.amountInDouble else { return }
         let result = amountInDouble * rate.result
-        self.result = result
+        self.result = result.round(to: 2)
+        
         }
     func updateUI () {
         DispatchQueue.main.async {
-            self.amountLabel.text = self.result?.string
+            self.resultTextField.text = self.result?.string
         }
         
         

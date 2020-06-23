@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -53,16 +53,13 @@
                                     <color key="titleColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                 </state>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ke5-e8-4pw">
+                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ekx-KI-i0J" customClass="CurrencyConverterTextField" customModule="Currency_Converter" customModuleProvider="target">
                                 <rect key="frame" x="122.5" y="378" width="261.5" height="34"/>
                                 <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="34" id="73s-AH-VHh"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -70,19 +67,19 @@
                             <constraint firstItem="5xN-7z-mSi" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="260" id="1sl-CL-JKD"/>
                             <constraint firstItem="ZYU-2I-nrW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="70" id="D72-S0-lBe"/>
                             <constraint firstItem="eSG-hM-kdz" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="461" id="Li6-fm-FS1"/>
-                            <constraint firstItem="ke5-e8-4pw" firstAttribute="top" secondItem="pw6-H2-cb1" secondAttribute="bottom" constant="40" id="Rq8-lo-ZvA"/>
+                            <constraint firstItem="ekx-KI-i0J" firstAttribute="top" secondItem="pw6-H2-cb1" secondAttribute="bottom" constant="40" id="Si2-b8-vYl"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pw6-H2-cb1" secondAttribute="trailing" constant="30" id="SyW-Pi-gbe"/>
                             <constraint firstItem="pw6-H2-cb1" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="260" id="TE5-Wo-Piu"/>
                             <constraint firstItem="YHY-yk-CoY" firstAttribute="top" secondItem="5xN-7z-mSi" secondAttribute="bottom" constant="40" id="Tkk-8x-5oG"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ke5-e8-4pw" secondAttribute="trailing" constant="30" id="UjV-R1-X0i"/>
                             <constraint firstItem="YHY-yk-CoY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="dOq-yt-spM"/>
                             <constraint firstItem="ZYU-2I-nrW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="45" id="gFd-gR-HHw"/>
                             <constraint firstItem="5aH-vG-bTy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="kNc-YB-tqB"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eSG-hM-kdz" secondAttribute="trailing" constant="90" id="oBq-XM-taL"/>
+                            <constraint firstItem="ekx-KI-i0J" firstAttribute="leading" secondItem="YHY-yk-CoY" secondAttribute="trailing" constant="30" id="pwc-15-4H5"/>
                             <constraint firstItem="5aH-vG-bTy" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="tLX-zd-TXM"/>
                             <constraint firstItem="5xN-7z-mSi" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="tmI-Mz-PyE"/>
-                            <constraint firstItem="ke5-e8-4pw" firstAttribute="leading" secondItem="YHY-yk-CoY" secondAttribute="trailing" constant="30" id="uUY-ee-Au4"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ZYU-2I-nrW" secondAttribute="trailing" constant="45" id="vxI-Jp-9iG"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ekx-KI-i0J" secondAttribute="trailing" constant="30" id="w4E-Wm-f46"/>
                             <constraint firstItem="eSG-hM-kdz" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="90" id="wsm-Fc-4hz"/>
                             <constraint firstItem="5aH-vG-bTy" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottom" id="xsT-VN-u57"/>
                             <constraint firstItem="5aH-vG-bTy" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="yKI-td-PF3"/>
@@ -90,10 +87,10 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="amountLabel" destination="ke5-e8-4pw" id="5RF-qN-cjs"/>
                         <outlet property="convertButton" destination="eSG-hM-kdz" id="Iri-3J-UFe"/>
                         <outlet property="firstAmountTextField" destination="pw6-H2-cb1" id="77J-gK-AwF"/>
                         <outlet property="firstCurrencyTextField" destination="5xN-7z-mSi" id="vcT-Hy-Rrx"/>
+                        <outlet property="resultTextField" destination="ekx-KI-i0J" id="RU7-Jj-1zW"/>
                         <outlet property="secondCurrencyTextField" destination="YHY-yk-CoY" id="dkO-F2-lPK"/>
                         <outlet property="titleLabel" destination="ZYU-2I-nrW" id="3v2-6E-hif"/>
                     </connections>

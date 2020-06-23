@@ -50,5 +50,3 @@ func getCurrency (baseCurrency: String, secondCurrency: String, completed: @esca
     }
 }
 
-//https://api.ratesapi.io/api/latest?base=«USD»&symbols=«EUR»
-//https://api.exchangerate.host/convert?from=CAD&to=CNY
