@@ -23,7 +23,8 @@ class CurrencyConverterVC: UIViewController {
     @IBOutlet var amountLabel: UILabel!
     @IBOutlet var convertButton: UIButton!
     
-    
+    var source = ""
+    var currencies = ""
     
     var currencyTextFieldsArray: [UITextField] = []
     let currencyPicker = UIPickerView()
@@ -34,7 +35,7 @@ class CurrencyConverterVC: UIViewController {
     var baseCurrency = ""
     var secondCurrency = ""
     var currencyResult: Double?
-    let serialQueue = DispatchQueue(label: "serial queue")
+    var currencyAmount = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +43,7 @@ class CurrencyConverterVC: UIViewController {
         configureAmountTextFieldAndLabel()
         configureConvertButton()
         createDismissTapGesture ()
+        
     }
     
     
@@ -52,6 +54,23 @@ class CurrencyConverterVC: UIViewController {
         view.addGestureRecognizer(tap)
     }
     
+    func getTextFromTextFields () {
+        guard let baseCurrency = firstCurrencyTextField.text else { print ("has no currency in first currency textfield")
+            return
+        }
+        self.baseCurrency = baseCurrency
+        guard let secondCurrency = secondCurrencyTextField.text else { print ("has no currency in second currency textfield")
+            return}
+        self.secondCurrency = secondCurrency
+        guard let currencyAmount = firstAmountTextField.text else { print ("has no amount in amount textfield")
+            return}
+        self.currencyAmount = currencyAmount
+        let amountInDouble = Double(self.firstAmountTextField.text!)
+        let roundedAmountInDouble = amountInDouble?.round(to: 0)
+        guard roundedAmountInDouble != nil else { return }
+        self.amountInDouble = roundedAmountInDouble!
+        
+    }
     
     func configureCurrencyTextFields() {
         currencyTextFieldsArray.append(firstCurrencyTextField)
@@ -93,7 +112,7 @@ class CurrencyConverterVC: UIViewController {
         convertButton.layer.cornerRadius = 12
         convertButton.layer.borderColor = UIColor.systemGray2.cgColor
         convertButton.layer.borderWidth = 2
-        convertButton.addTarget(self, action: #selector(convertButtonAction), for: .touchUpInside)
+        convertButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
     }
     
     
@@ -105,103 +124,40 @@ class CurrencyConverterVC: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    
-    
-    
-    func getCurrencyRates (from baseCurrency: String, to secondCurrency: String, completed: @escaping (Result<Currency, Error>) -> Void) {
-        
-        let baseUrl = "https://api.ratesapi.io/api/latest?"
-        guard let baseCurrency = self.firstCurrencyTextField.text else { return }
-        self.baseCurrency = baseCurrency
-        guard let secondCurrency = self.secondCurrencyTextField.text else { return }
-        self.secondCurrency = secondCurrency
-        let endpoint = baseUrl + "base=\(baseCurrency)&symbols=\(secondCurrency)"
-        
-        guard let url = URL(string: endpoint) else {
-            completed(.failure(CurrencyError.invalidCurrencyType))
-            return
-        }
-        let task = URLSession.shared.dataTask(with: url) {data, response, error in
+    @objc func buttonAction () {
+        getTextFromTextFields()
+        NetworkManager.shared.getCurrency(baseCurrency: baseCurrency, secondCurrency: secondCurrency) { [weak self] result in
             
-            if let _ = error {
-                completed(.failure(CurrencyError.unableToComplete))
-                return
-            }
-            
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                completed(.failure(CurrencyError.invalidResponse))
-                return
-            }
-            
-            guard let data = data else {
-                completed(.failure(CurrencyError.invalidData))
-                return
-            }
-            do {
-                let decoder = JSONDecoder()
-                let resultCurrencyRate = try decoder.decode(Currency.self, from: data)
-                completed(.success(resultCurrencyRate))
-                let currencyRateWithName = self.currencyRateDictionary.merged(with: resultCurrencyRate.rates)
-                let currencyRateArray = currencyRateWithName.map {return $0.value}
-                DispatchQueue.main.async {
-                    guard self.firstAmountTextField.text != nil  else {return}
-                    let amountInDouble = Double(self.firstAmountTextField.text!)
-                    let roundedAmountInDouble = amountInDouble?.round(to: 0)
-                    guard roundedAmountInDouble != nil else { return }
-                    self.amountInDouble = roundedAmountInDouble!
-                    let currencyRate = currencyRateArray.first!
-                    self.currencyRate = currencyRate
-                    
-            }
-                
-            }
-                
-                
-            catch {
-                
-                    completed(.failure(CurrencyError.invalidData))
-                
-            }
-            
-            
-        }
-        task.resume()
-    }
-    
-    func getResult() {
-        
-        guard self.amountInDouble != nil else {print("have no amount to count")
-            return
-        }
-        guard self.currencyRate != nil else {print ("have no currency rate to count")
-            return
-        }
-        let result = self.amountInDouble! * self.currencyRate!
-        let roundedResult = result.round(to: 2)
-        self.currencyResult = roundedResult
-            
-            
-        
-        
-        
-    }
-    
-    @objc func convertButtonAction () {
-        print("The button was tapped")
-        serialQueue.async{
-            self.getCurrencyRates(from: self.baseCurrency, to: self.secondCurrency) { [weak self] result in
-            guard let self = self else {return}
+            guard let self = self else { return }
             switch result {
-            case .success( _):
-            self.getResult()
-            case .failure(_):
-                return
+            case .success(let rate):
+                self.makeConversion(with: rate)
+            case .failure( _):
+               print(CurrencyError.invalidData)
             }
+        
+    }
+    }
+    func makeConversion (with rate: Currency) {
+        DispatchQueue.main.async {
+            self.amountLabel.text = String(rate.result)
         }
-        }
-        serialQueue.async {
-        self.amountLabel.text = String(self.currencyResult!)
-        }
+        
         
     }
 }
+    
+    
+    
+    
+    
+        
+       
+        
+        
+            
+
+        
+        
+  
+
