@@ -8,12 +8,13 @@
 
 import UIKit
 
-
 extension CurrencyConverterVC: UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UIGestureRecognizerDelegate {
+    
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-
+    
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return currencyList.count
@@ -26,14 +27,22 @@ extension CurrencyConverterVC: UIPickerViewDelegate, UIPickerViewDataSource, UIT
     }
     
     
+    
+    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedCurrency = currencyList[row].abbreviation
         if firstCurrencyTextField.isFirstResponder {
+            currencyPicker.selectRow(0, inComponent: 0, animated: true)
+            
+
             firstCurrencyTextField.text = selectedCurrency
+            currencyPicker.selectRow(0, inComponent: 0, animated: true)
         } else {
+            currencyPicker.selectRow(0, inComponent: 0, animated: true)
+            
             secondCurrencyTextField.text = selectedCurrency
+            
         }
-        
     }
     
     
@@ -55,15 +64,10 @@ extension CurrencyConverterVC: UIPickerViewDelegate, UIPickerViewDataSource, UIT
     }
     
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == firstAmountTextField {
-            firstAmountTextField.resignFirstResponder()
-        }
-        return true
-    }
     
+    
+//    Making amount textFields to contain only numbers and comma for separation
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         return string == string.filter("0123456789.".contains)
     }
 }
-

@@ -8,18 +8,16 @@
 
 import UIKit
 
-
-
 class CurrencyConverterTextField: UITextField {
     override func awakeFromNib() {
-    super.awakeFromNib()
-    layer.cornerRadius = 6
-    layer.borderWidth = 2
-    layer.borderColor = UIColor.systemGray3.cgColor
-    textColor = .label
-    tintColor = .label
-    textAlignment = .center
-}
+        super.awakeFromNib()
+        layer.cornerRadius = 6
+        layer.borderWidth = 2
+        layer.borderColor = UIColor.systemGray3.cgColor
+        textColor = .label
+        tintColor = .label
+        textAlignment = .center
+    }
 }
 
 

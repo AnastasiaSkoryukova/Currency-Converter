@@ -10,6 +10,5 @@ import Foundation
 
 struct Currency: Codable {
     var result: Double
-
 }
 

@@ -8,9 +8,9 @@
 
 import Foundation
 
-    extension LosslessStringConvertible {
-        var string: String { .init(self) }
-    }
+extension LosslessStringConvertible {
+    var string: String { .init(self) }
+}
 
 extension Double {
     func round(to places: Int) -> Double {
