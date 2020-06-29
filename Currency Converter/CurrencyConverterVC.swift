@@ -18,8 +18,10 @@ class CurrencyConverterVC: UIViewController {
     @IBOutlet var resultTextField: CurrencyConverterTextField!
     @IBOutlet var convertButton: UIButton!
     
-    var selectedCurrency: String?
+    @IBOutlet var currencyChangeButton: UIButton!
     
+    var selectedCurrency: String?
+    var displayedCurrency: Int?
     
     var currencyTextFieldsArray: [UITextField] = []
     let currencyPicker = UIPickerView()
@@ -30,12 +32,15 @@ class CurrencyConverterVC: UIViewController {
     var currencyAmount = ""
     var result: Double?
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCurrencyTextFields()
         configureAmountTextField()
         configureConvertButton()
         createDismissTapGesture ()
+        configureCurrencyChangeButton()
     }
     
     
@@ -58,9 +63,9 @@ class CurrencyConverterVC: UIViewController {
             return}
         self.currencyAmount = currencyAmount
         let amountInDouble = Double(currencyAmount)
-        let roundedAmountInDouble = amountInDouble?.round(to: 0)
-        guard roundedAmountInDouble != nil else { return }
-        self.amountInDouble = roundedAmountInDouble!
+        
+        guard amountInDouble != nil else { return }
+        self.amountInDouble = amountInDouble!
     }
     
     
@@ -92,6 +97,26 @@ class CurrencyConverterVC: UIViewController {
         firstAmountTextField.delegate = self
     }
     
+    func configureCurrencyChangeButton() {
+        currencyChangeButton.addTarget(self, action: #selector(currencyChangeButtonAction), for: .touchUpInside)
+        
+    }
+    
+    @objc func currencyChangeButtonAction() {
+        (firstCurrencyTextField.text, secondCurrencyTextField.text) = (secondCurrencyTextField.text, firstCurrencyTextField.text)
+        getTextFromTextFields()
+        NetworkManager.shared.getCurrency(baseCurrency: baseCurrency, secondCurrency: secondCurrency) { [weak self] result in
+            
+            guard let self = self else { return }
+            switch result {
+            case .success(let rate):
+                self.makeCalculation(with: rate)
+            case .failure( _):
+                print(CurrencyError.invalidData)
+            }
+            self.updateUI()
+        }
+    }
     
     func configureConvertButton() {
         convertButton.layer.cornerRadius = 12

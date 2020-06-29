@@ -31,18 +31,20 @@ extension CurrencyConverterVC: UIPickerViewDelegate, UIPickerViewDataSource, UIT
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedCurrency = currencyList[row].abbreviation
+        
         if firstCurrencyTextField.isFirstResponder {
-            currencyPicker.selectRow(0, inComponent: 0, animated: true)
             
-
             firstCurrencyTextField.text = selectedCurrency
-            currencyPicker.selectRow(0, inComponent: 0, animated: true)
-        } else {
-            currencyPicker.selectRow(0, inComponent: 0, animated: true)
+            
+            
+            
+        } else if secondCurrencyTextField.isFirstResponder{
             
             secondCurrencyTextField.text = selectedCurrency
             
         }
+        
+        
     }
     
     
@@ -70,4 +72,8 @@ extension CurrencyConverterVC: UIPickerViewDelegate, UIPickerViewDataSource, UIT
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         return string == string.filter("0123456789.".contains)
     }
+    
+    
+    
+    
 }

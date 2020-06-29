@@ -19,20 +19,20 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="0" textAlignment="center" minimumFontSize="16" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="pw6-H2-cb1" userLabel="firstAmountTextfield" customClass="CurrencyConverterTextField" customModule="Currency_Converter" customModuleProvider="target">
-                                <rect key="frame" x="125" y="214" width="259" height="34"/>
+                                <rect key="frame" x="125" y="264" width="259" height="34"/>
                                 <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="numbersAndPunctuation" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="EUR" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="YHY-yk-CoY" userLabel="secondCurrencyTextField" customClass="CurrencyConverterTextField" customModule="Currency_Converter" customModuleProvider="target">
-                                <rect key="frame" x="30" y="288" width="62.5" height="34"/>
+                                <rect key="frame" x="30" y="378" width="62.5" height="34"/>
                                 <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="USD" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="5xN-7z-mSi" userLabel="firstCurrencyTextField" customClass="CurrencyConverterTextField" customModule="Currency_Converter" customModuleProvider="target">
-                                <rect key="frame" x="30" y="214" width="65" height="34"/>
+                                <rect key="frame" x="30" y="264" width="65" height="34"/>
                                 <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -43,7 +43,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eSG-hM-kdz">
-                                <rect key="frame" x="90" y="394" width="234" height="50"/>
+                                <rect key="frame" x="90" y="512" width="234" height="50"/>
                                 <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Cm4-Od-h8h"/>
@@ -54,32 +54,35 @@
                                 </state>
                             </button>
                             <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ekx-KI-i0J" customClass="CurrencyConverterTextField" customModule="Currency_Converter" customModuleProvider="target">
-                                <rect key="frame" x="122.5" y="288" width="261.5" height="34"/>
+                                <rect key="frame" x="122.5" y="378" width="261.5" height="34"/>
                                 <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5tc-D0-1RQ">
+                                <rect key="frame" x="42" y="318.5" width="45" height="45"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" backgroundImage="arrow.up.arrow.down.circle" catalog="system"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="pw6-H2-cb1" firstAttribute="leading" secondItem="5xN-7z-mSi" secondAttribute="trailing" constant="30" id="1bF-aC-1af"/>
-                            <constraint firstItem="5xN-7z-mSi" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="260" id="1sl-CL-JKD">
-                                <variation key="heightClass=regular-widthClass=compact" constant="170"/>
-                            </constraint>
-                            <constraint firstItem="ZYU-2I-nrW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="70" id="D72-S0-lBe">
+                            <constraint firstItem="eSG-hM-kdz" firstAttribute="top" secondItem="ekx-KI-i0J" secondAttribute="bottom" constant="100" id="CgW-2K-GPq"/>
+                            <constraint firstItem="ZYU-2I-nrW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="200" id="D72-S0-lBe">
                                 <variation key="heightClass=regular-widthClass=compact" constant="50"/>
                             </constraint>
-                            <constraint firstItem="eSG-hM-kdz" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="461" id="Li6-fm-FS1">
-                                <variation key="heightClass=regular-widthClass=compact" constant="350"/>
-                            </constraint>
-                            <constraint firstItem="ekx-KI-i0J" firstAttribute="top" secondItem="pw6-H2-cb1" secondAttribute="bottom" constant="40" id="Si2-b8-vYl"/>
+                            <constraint firstItem="YHY-yk-CoY" firstAttribute="top" secondItem="5tc-D0-1RQ" secondAttribute="bottom" constant="20" id="FVO-uo-uY9"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="YHY-yk-CoY" secondAttribute="bottom" constant="450" id="Fyq-mr-ma1"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="eSG-hM-kdz" secondAttribute="bottom" constant="300" id="QQB-p4-mxh"/>
+                            <constraint firstItem="ekx-KI-i0J" firstAttribute="top" secondItem="pw6-H2-cb1" secondAttribute="bottom" constant="80" id="Si2-b8-vYl"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pw6-H2-cb1" secondAttribute="trailing" constant="30" id="SyW-Pi-gbe"/>
-                            <constraint firstItem="pw6-H2-cb1" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="260" id="TE5-Wo-Piu">
-                                <variation key="heightClass=regular-widthClass=compact" constant="170"/>
-                            </constraint>
-                            <constraint firstItem="YHY-yk-CoY" firstAttribute="top" secondItem="5xN-7z-mSi" secondAttribute="bottom" constant="40" id="Tkk-8x-5oG"/>
+                            <constraint firstItem="YHY-yk-CoY" firstAttribute="top" secondItem="5xN-7z-mSi" secondAttribute="bottom" constant="80" id="Tkk-8x-5oG"/>
+                            <constraint firstItem="5tc-D0-1RQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="42" id="bRA-YQ-MSb"/>
                             <constraint firstItem="YHY-yk-CoY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="dOq-yt-spM"/>
+                            <constraint firstItem="5tc-D0-1RQ" firstAttribute="top" secondItem="5xN-7z-mSi" secondAttribute="bottom" constant="20" id="fTO-Pr-r8z"/>
                             <constraint firstItem="ZYU-2I-nrW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="45" id="gFd-gR-HHw">
                                 <variation key="heightClass=regular-widthClass=compact" constant="5"/>
                             </constraint>
@@ -98,6 +101,7 @@
                     </view>
                     <connections>
                         <outlet property="convertButton" destination="eSG-hM-kdz" id="Iri-3J-UFe"/>
+                        <outlet property="currencyChangeButton" destination="5tc-D0-1RQ" id="4zc-Rn-21C"/>
                         <outlet property="firstAmountTextField" destination="pw6-H2-cb1" id="77J-gK-AwF"/>
                         <outlet property="firstCurrencyTextField" destination="5xN-7z-mSi" id="vcT-Hy-Rrx"/>
                         <outlet property="resultTextField" destination="ekx-KI-i0J" id="RU7-Jj-1zW"/>
@@ -111,6 +115,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.up.arrow.down.circle" catalog="system" width="128" height="121"/>
         <image name="background_light" width="770" height="466.66665649414062"/>
     </resources>
 </document>
