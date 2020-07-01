@@ -8,16 +8,14 @@
 
 import UIKit
 
-
 class CurrencyConverterVC: UIViewController {
     
     @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var firstCurrencyTextField: CurrencyConverterTextField!
-    @IBOutlet var secondCurrencyTextField: CurrencyConverterTextField!
-    @IBOutlet var firstAmountTextField: CurrencyConverterTextField!
-    @IBOutlet var resultTextField: CurrencyConverterTextField!
+    @IBOutlet var firstCurrencyTextField: UITextField!
+    @IBOutlet var secondCurrencyTextField: UITextField!
+    @IBOutlet var amountTextField: UITextField!
+    @IBOutlet var resultTextField: UITextField!
     @IBOutlet var convertButton: UIButton!
-    
     @IBOutlet var currencyChangeButton: UIButton!
     
     var selectedCurrency: String?
@@ -33,11 +31,10 @@ class CurrencyConverterVC: UIViewController {
     var result: Double?
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCurrencyTextFields()
-        configureAmountTextField()
+        configureAmountAndResultTextFields()
         configureConvertButton()
         createDismissTapGesture ()
         configureCurrencyChangeButton()
@@ -50,7 +47,8 @@ class CurrencyConverterVC: UIViewController {
         view.addGestureRecognizer(tap)
     }
     
-//    Gets the value from textFields and put it into the view controller properties
+    
+    //    Gets the value from textFields and put it into the view controller properties
     func getTextFromTextFields () {
         guard let baseCurrency = firstCurrencyTextField.text else { print ("has no currency in first currency textfield")
             return
@@ -59,7 +57,7 @@ class CurrencyConverterVC: UIViewController {
         guard let secondCurrency = secondCurrencyTextField.text else { print ("has no currency in second currency textfield")
             return}
         self.secondCurrency = secondCurrency
-        guard let currencyAmount = firstAmountTextField.text else { print ("has no amount in amount textfield")
+        guard let currencyAmount = amountTextField.text else { print ("has no amount in amount textfield")
             return}
         self.currencyAmount = currencyAmount
         let amountInDouble = Double(currencyAmount)
@@ -76,6 +74,7 @@ class CurrencyConverterVC: UIViewController {
         
         for currencyTextField in currencyTextFieldsArray {
             currencyTextField.inputView = currencyPicker
+            currencyTextField.addBottomBorderWithColor(color: UIColor.systemBlue, width: 3)
         }
         
         //        dismiss Keyboard
@@ -93,13 +92,16 @@ class CurrencyConverterVC: UIViewController {
     }
     
     
-    func configureAmountTextField() {
-        firstAmountTextField.delegate = self
+    func configureAmountAndResultTextFields() {
+        amountTextField.delegate = self
+//        Adding the bottom line instead of the textField borders
+        amountTextField.addBottomBorderWithColor(color: UIColor.systemBlue, width: 3)
+        resultTextField.addBottomBorderWithColor(color: UIColor.systemBlue, width: 3)
     }
+    
     
     func configureCurrencyChangeButton() {
         currencyChangeButton.addTarget(self, action: #selector(currencyChangeButtonAction), for: .touchUpInside)
-        
     }
     
     @objc func currencyChangeButtonAction() {
@@ -118,10 +120,9 @@ class CurrencyConverterVC: UIViewController {
         }
     }
     
+    
     func configureConvertButton() {
-        convertButton.layer.cornerRadius = 12
-        convertButton.layer.borderColor = UIColor.systemGray2.cgColor
-        convertButton.layer.borderWidth = 2
+        convertButton.layer.cornerRadius = 22
         convertButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
     }
     
@@ -140,14 +141,16 @@ class CurrencyConverterVC: UIViewController {
         }
     }
     
-//    Getting the result of calculation (currency rate * currency amount)
+    
+    //    Getting the result of calculation (currency rate * currency amount)
     func makeCalculation(with rate: Currency) {
         guard let amountInDouble = self.amountInDouble else { return }
         let result = amountInDouble * rate.result
         self.result = result.round(to: 2)
     }
     
-//    Display the result of conversion at the amount textfield
+    
+    //    Display the result of conversion at the amount textfield
     func updateUI () {
         DispatchQueue.main.async {
             self.resultTextField.text = self.result?.string

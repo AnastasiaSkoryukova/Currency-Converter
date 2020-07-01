@@ -26,25 +26,15 @@ extension CurrencyConverterVC: UIPickerViewDelegate, UIPickerViewDataSource, UIT
         return titleName
     }
     
-    
-    
-    
+
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedCurrency = currencyList[row].abbreviation
         
         if firstCurrencyTextField.isFirstResponder {
-            
             firstCurrencyTextField.text = selectedCurrency
-            
-            
-            
         } else if secondCurrencyTextField.isFirstResponder{
-            
             secondCurrencyTextField.text = selectedCurrency
-            
         }
-        
-        
     }
     
     
@@ -66,14 +56,8 @@ extension CurrencyConverterVC: UIPickerViewDelegate, UIPickerViewDataSource, UIT
     }
     
     
-    
-    
 //    Making amount textFields to contain only numbers and comma for separation
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         return string == string.filter("0123456789.".contains)
     }
-    
-    
-    
-    
 }

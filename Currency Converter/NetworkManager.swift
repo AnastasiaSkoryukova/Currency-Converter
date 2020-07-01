@@ -29,14 +29,17 @@ class NetworkManager {
                 completed (.failure(CurrencyError.unableToComplete))
                 return
             }
+            
             guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
                 completed(.failure(CurrencyError.invalidResponse))
                 return
             }
+            
             guard let data = data else {
                 completed(.failure(CurrencyError.invalidData))
                 return
             }
+            
             do {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
