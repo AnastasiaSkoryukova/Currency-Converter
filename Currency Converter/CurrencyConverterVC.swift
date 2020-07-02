@@ -22,7 +22,8 @@ class CurrencyConverterVC: UIViewController {
     var displayedCurrency: Int?
     
     var currencyTextFieldsArray: [UITextField] = []
-    let currencyPicker = UIPickerView()
+    let firstCurrencyPicker = UIPickerView()
+    let secondCurrencyPicker = UIPickerView()
     
     var amountInDouble: Double?
     var baseCurrency = ""
@@ -70,10 +71,11 @@ class CurrencyConverterVC: UIViewController {
     func configureCurrencyTextFields() {
         currencyTextFieldsArray.append(firstCurrencyTextField)
         currencyTextFieldsArray.append(secondCurrencyTextField)
-        currencyPicker.delegate = self
-        
+        firstCurrencyPicker.delegate = self
+        secondCurrencyPicker.delegate = self
+        firstCurrencyTextField.inputView = firstCurrencyPicker
+        secondCurrencyTextField.inputView = secondCurrencyPicker
         for currencyTextField in currencyTextFieldsArray {
-            currencyTextField.inputView = currencyPicker
             currencyTextField.addBottomBorderWithColor(color: UIColor.systemBlue, width: 3)
         }
         
@@ -94,6 +96,7 @@ class CurrencyConverterVC: UIViewController {
     
     func configureAmountAndResultTextFields() {
         amountTextField.delegate = self
+        amountTextField.keyboardType = .decimalPad
 //        Adding the bottom line instead of the textField borders
         amountTextField.addBottomBorderWithColor(color: UIColor.systemBlue, width: 3)
         resultTextField.addBottomBorderWithColor(color: UIColor.systemBlue, width: 3)
